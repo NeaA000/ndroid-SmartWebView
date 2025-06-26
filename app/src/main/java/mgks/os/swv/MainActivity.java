@@ -71,7 +71,8 @@ import com.google.android.material.navigation.NavigationView;
 import java.util.Arrays;
 import java.util.Objects;
 import java.util.regex.Matcher;
-
+//QRScannerPlugin import
+import mgks.os.swv.plugins.QRScannerPlugin;
 /**
  * Main Activity for Smart WebView
  * Handles WebView configuration, lifecycle events and user interactions
@@ -87,7 +88,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
         super.onActivityResult(requestCode, resultCode, intent);
+        // SmartWebView 내부 플러그인 매니저에도 통보
         SmartWebView.getPluginManager().onActivityResult(requestCode, resultCode, intent);
+        // QRScannerPlugin이 스캔 결과를 처리하도록 넘겨줍니다.
+        //QRScannerPlugin.handleActivityResult(requestCode, resultCode, intent, SmartWebView.asw_view);
     }
 
     @SuppressLint({"SetJavaScriptEnabled", "WrongViewCast", "JavascriptInterface"})
